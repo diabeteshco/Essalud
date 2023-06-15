@@ -1,0 +1,28 @@
+background-image:url('imagenes/menu.jpg');
+
+ <form>
+        <h3>Bienvenido</h3>
+        <input type="text" placeholder="Usuario">
+        <input type="password" placeholder="Contrasena">
+        <button type="submit">Ingresar</button>
+        <p class="forgot-password"> Olvidaste tu contrasena?</p>
+      </form>
+      
+
+<form action="login.php" method="POST">
+    <h3>Bienvenido</h3>
+    <input type="text" name="usuario" placeholder="Usuario" required>
+    <input type="password" name="contrasena" placeholder="Contrasena" required>
+    
+    <button type="submit">Ingresar</button>
+
+<form action="pagina2.html" method="post" class="center">
+    <h3>Bienvenido</h3>
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario" required><br>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" name="contrasena" required><br>
+
+    <input type="submit" value="Ingresar">
+<p class="center"><a href="olvidecontrasena.html">¿Olvidaste tu contraseña?</a></p>

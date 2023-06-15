@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagina2</title>
+    <link rel="stylesheet" type="text/css" href="styles3.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<header class="main-header">
+<h1 class="title">DiabetesEssalud</h1>
+
+<label for="btn-nav" class="btn-nav"></label>
+<input type="checkbox" id="btn-nav">
+
+<nav>
+    <ul class="navigation">
+        <li>
+            <a href="" onclick="showContent('vigilancia')">VIGILANCIA</a>
+            <ul class="submenu">
+                <li><a href="#" onclick="openModal()">REGFICHA</a></li>
+                <li><a href="#" onclick="openModal()">REGSEGUIMIENTO</a></li>
+            </ul>
+        </li>
+
+        <li><a href="">REPORTES</a></li>
+        <li><a href="">DESCARGAS</a></li>
+        <li><a href="">DOCUMENTACION</a></li>
+    </ul>
+</nav>
+
+</header>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Formulario de Registro de Fichas</h2>
+        
+   <form id="registro-form" onsubmit="submitForm(event)">
+    <fieldset>
+        <legend>Datos Personales</legend>
+        <label for="establecimiento">Establecimiento de Salud:</label>
+        <input type="text" id="establecimiento" name="establecimiento" required>
+        
+        <label for="historia">Historia Clínica:</label>
+        <input type="text" id="historia" name="historia" required>
+        
+        <label for="tipo-documento">Tipo de Documento:</label>
+        <select id="tipo-documento" name="tipo-documento" required>
+            <option value="">Seleccione...</option>
+            <option value="DNI">DNI</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+            <!-- Agrega más opciones aquí -->
+        </select>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        </select>
+
+            <!-- Resto de los campos de datos personales -->
+    </fieldset>
+    
+    <fieldset>
+        <legend>Información Médica</legend>
+        <label for="tipo-diabetes">Tipo de Diabetes:</label>
+        <select id="tipo-diabetes" name="tipo-diabetes" required>
+            <option value="">Seleccione...</option>
+            <option value="Tipo 1">Tipo 1</option>
+            <option value="Tipo 2">Tipo 2</option>
+            <option value="Gestacional">Gestacional</option>
+            <option value="No Especificada">No Especificada</option>
+        </select>
+        
+        <label for="peso">Peso:</label>
+        <input type="text" id="peso" name="peso" required>
+
+        <label for="talla">Talla:</label>
+        <input type="text" id="talla" name="talla" required>
+        
+        <!-- Resto de los campos de información médica -->
+    </fieldset>
+    
+    <fieldset>
+        <legend>Estado del Caso</legend>
+        <label for="estado-caso">Estado del Caso:</label>
+        <select id="estado-caso" name="estado-caso" required>
+            <option value="">Seleccione...</option>
+            <option value="Controlado Estable">Controlado Estable</option>
+            <option value="Complicado">Complicado</option>
+            <option value="Muerto">Muerto</option>
+            <option value="Descompensado">Descompensado</option>
+        </select>
+        
+        <label for="numero-consultas">Número de Consultas:</label>
+        <input type="number" id="numero-consultas" name="numero-consultas" required>
+        
+        <!-- Resto de los campos de estado del caso -->
+    </fieldset>
+    
+    <!-- Resto de las subdivisiones y campos del formulario -->
+    
+    <button type="submit">Registrar</button>
+</form>
+        
+    </div>
+</div>
+
+<div id="seguimiento-form" class="hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Seguimiento Fichas</h2>
+    
+   <form id="seguimiento-formulario" onsubmit="submitSeguimientoForm(event)">
+        <fieldset>
+            <legend>Datos Seguimiento</legend>
+            
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+            
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+            
+            <!-- Agrega más campos de datos personales si es necesario -->
+        </fieldset>
+        
+        <!-- Agrega más subdivisiones y campos del formulario de seguimiento si es necesario -->
+
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+</div>
+
+</body>
+</html>
