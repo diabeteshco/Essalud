@@ -1,5 +1,5 @@
 body {
-  background-image: url('imagenes/fondo2.jpg');
+  background-image: url('imagenes/fondo3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -21,10 +21,10 @@ form {
   margin: 0 auto;
 }
 
-h4 {
+h2 {
   color: aliceblue;
-  font-size: 80px;
-  margin-bottom: 400px;
+  font-size: 50px;
+  margin-bottom: 450px;
 }
 
 
@@ -32,7 +32,7 @@ input {
   width: 100%;
   margin-bottom: 10px;
   padding: 8px;
-}º
+}
 h3 {
   color: black;
   font-size: 40px;
@@ -61,4 +61,3 @@ button {
   color: blue;
   text-decoration: underline;
 }
-
