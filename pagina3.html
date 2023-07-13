@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagina2</title>
+    <link rel="stylesheet" type="text/css" href="styles3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+       
+</head>
+<body>
+
+<header class="main-header">
+<h1 class="title">DiabetesEssalud</h1>
+
+<label for="btn-nav" class="btn-nav"></label>
+<input type="checkbox" id="btn-nav">
+
+<nav>
+    
+    <ul class="navigation">
+        <li>
+            <a href="#" onclick="showContent('vigilancia')">VIGILANCIA</a>
+            <ul class="submenu">
+                <li><a href= "javascript:void(0)" onclick="openModal('modal')">REGFICHA</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('modal2')">REGSEGUIMIENTO</a></li>
+            </ul>
+            <li>
+                <a href="#" onclick="toggleDownloadContainer()">DESCARGAS</a>
+                <div id="downloadContainer" class="submenu">
+                  <p>Descargar el archivo Excel de:</p>
+                  <button onclick="downloadFichas()">Descargar Registro de Fichas</button>
+                  <button onclick="downloadSeguimiento()">Descargar Registro de Seguimiento</button>
+                </div>
+              </li>
+              <li>
+                <a href="#" onclick="mostrarReportes()">REPORTES</a>
+                   <ul class="submenu">
+                            <li><a href="#" onclick="mostrarReporteEdad()">Por Edad</a></li>
+                            <div id="reportes-container"><canvas id="grafico-container"></canvas></div>
+                            <li><a href="#" onclick="mostrarReporteSexo()">Por Sexo</a></li>
+                            <div  id="reportes-container2"><canvas id="grafico-container2"></canvas></div>
+                            <li><a href="#" onclick="mostrarReporteTipoDiabetes()">Por Tipo de Diabetes</a></li>
+                            <div  id="reportes-container3"><canvas id="grafico-container3"></canvas></div>
+                    </ul>     
+                  
+              </li>
+              <li>
+                <a href="#" onclick="toggleSubmenu()">DOCUMENTACION</a>
+                <div id="normatividad" class="submenu">
+                  <ul>
+                    <li><a href="normativaDiabetes.pdf" onclick="descargarNormativa()">Descargar Normativa</a></li>
+                    <li><a href="ficha.pdf" onclick="descargarFicha()">Descargar Ficha Epidemiologica</a></li>
+                  </ul>
+                </div>
+              </li>
+
+           
+
+              
+                        
+</nav>
+
+</header>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal' )">&times;</span>
+        <h2>Formulario de Registro de Fichas</h2>
+        
+   <form id="registro-form" onsubmit="submitForm(event)">
+    <fieldset>
+        <legend>Datos Personales</legend>
+        <label for="establecimiento">Establecimiento de Salud:</label>
+        <select id="establecimiento" name="establecimiento" required>
+            <option value="CAP">CAP III PILLCOMARCA</option>
+            <option value="METRO">CAP III METROPOLITANO</option>
+        </select>        
+        <label for="historia">Nro Historia Clinica:</label>
+        <input type="text" id="historia" name="historia" required>
+            <label for="tipo-documento">Tipo de Documento:</label>
+        <select id="tipo-documento" name="tipo-documento" required>
+            <option value="">Seleccione...</option>
+            <option value="DNI">DNI</option>
+           <option value="Pasaporte">Pasaporte</option>
+            <option value="Carnet de Extranjería">Carnet de Extranjería</option>
+          </select>
+        <input type="number" id="documento" name="documento" required>
+        
+        <label for="appaterno">Apellido Paterno</label>
+        <input type="text" id="appaterno" name="appaterno" required>
+        <label for="apmaterno">Apellido Materno</label>
+        <input type="text" id="apmaterno" name="apmaterno" required>
+        <label for="nombres">Nombres</label>
+        <input type="text" id="nombres" name="nombres" required>
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        </select>
+
+            <!-- Resto de los campos de datos personales -->
+    </fieldset>
+    
+    <fieldset>
+        <legend>Informacion Medica</legend>
+        <label for="tipo-diabetes">Tipo de Diabetes:</label>
+        <select id="tipo-diabetes" name="tipo-diabetes" required>
+            <option value="">Seleccione...</option>
+            <option value="Tipo 1">Tipo 1</option>
+            <option value="Tipo 2">Tipo 2</option>
+            <option value="Gestacional">Gestacional</option>
+            
+        </select>
+        
+        <label for="peso">Peso:</label>
+        <input type="text" id="peso" name="peso" required>
+        <label for="talla">Talla:</label>
+        <input type="text" id="talla" name="talla" required>
+        <label for="glucosa">Glucosa</label>
+        <input type="text" id="glucosa" name="glucosa" required>
+        <label for="creatinina">Creatinina</label>
+        <input type="text" id="creatinina" name="creatinina" required>
+        
+        <!-- Resto de los campos de información médica -->
+    </fieldset>
+    
+    <fieldset>
+        <legend>Estado del Caso</legend>
+        <label for="estado-caso">Estado del Caso:</label>
+        <select id="estado-caso" name="estado-caso" required>
+            <option value="">Seleccione...</option>
+            <option value="Controlado Estable">Controlado Estable</option>
+            <option value="Complicado">Complicado</option>
+            <option value="Muerto">Muerto</option>
+            <option value="Descompensado">Descompensado</option>
+        </select>
+        
+        <label for="numero-consultas">Numero de Consultas:</label>
+        <input type="number" id="numero-consultas" name="numero-consultas" required>
+        
+        <!-- Resto de los campos de estado del caso -->
+    </fieldset>
+    
+    <!-- Resto de las subdivisiones y campos del formulario -->
+    
+    <button type="submit">Registrar</button>
+    <button type="button" onclick="closeModal('modal')">Cerrar</button>
+
+</form>
+        
+</div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal2')">&times;</span>
+        <h2>Formulario de Seguimiento de Fichas</h2>
+   
+   <form id="seguimiento-formulario" onsubmit="submitSeguimientoForm(event)">
+        <fieldset>
+            <legend>Datos Seguimiento</legend>
+            
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre2" name="nombre2" required>
+            
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido2" name="apellido2" required>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad2" name="edad2" required>
+            
+            <!-- Agregar campos de datos personales -->
+        </fieldset>
+        
+        <!-- Agrega subdivisiones y campos del formulario de seguimiento si es necesario -->
+
+        <button type="submit">Guardar</button>
+        <button type="button" onclick="closeModal('modal2')">Cerrar</button>
+
+
+    </form>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
